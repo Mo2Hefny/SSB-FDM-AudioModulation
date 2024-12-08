@@ -29,6 +29,8 @@ if __name__ == "__main__":
     is_test = "--test" in sys.argv
     save_dir = os.path.join(os.path.dirname(
         os.path.abspath(__file__)), "..", "data", "input")
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
     if is_test:
         from plot_signal import Plotter
         test_filename = os.path.join(save_dir, "test_input.wav")
