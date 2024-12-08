@@ -95,7 +95,10 @@ class Filterer:
 
 if __name__ == "__main__":
     input_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "input")
+    input_magnitude_spectrum_dir = os.path.join(input_dir, "magnitude_spectrum")
     save_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "filtered")
+    save_magnitude_spectrum_dir = os.path.join(save_dir, "magnitude_spectrum")
+
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
     
@@ -105,10 +108,10 @@ if __name__ == "__main__":
             # read the file
             sample_rate, signal = read(os.path.join(input_dir, file))
             # filter the signal
-            filtered_signal = Filterer.low_pass_filter(signal, sample_rate, 4000, FilterType.LOW_PASS_BUTTERWORTH)
+            filtered_signal = Filterer.low_pass_filter(signal, sample_rate, 5000, FilterType.LOW_PASS_BUTTERWORTH)
             # save the filtered signal
             write(os.path.join(save_dir, file), sample_rate, filtered_signal.astype(np.int16))
-            # plot the filtered signal
-            # Plotter.plot_signal(filtered_signal, sample_rate, title=f"Filtered {file}")
+            # plot the magnitude spectrum of the original signal
+            Plotter.plot_magnitude_spectrum(signal, sample_rate, title=f"original {file} Magnitude Spectrum", save_dir=input_magnitude_spectrum_dir, file_name=f"original_{file}_magnitude_spectrum.png")
             # plot the magnitude spectrum of the filtered signal
-            Plotter.plot_magnitude_spectrum(filtered_signal, sample_rate, title=f"Filtered {file} Magnitude Spectrum")
+            Plotter.plot_magnitude_spectrum(filtered_signal, sample_rate, title=f"Filtered {file} Magnitude Spectrum", save_dir=save_magnitude_spectrum_dir, file_name=f"filtered_{file}_magnitude_spectrum.png")

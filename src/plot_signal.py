@@ -1,4 +1,5 @@
 import numpy as np
+import os
 import matplotlib.pyplot as plt
 from scipy.io import wavfile
 from common_includes import *
@@ -32,7 +33,7 @@ class Plotter:
             raise ValueError("Unsupported audio format")
             
     @classmethod
-    def plot_magnitude_spectrum(cls, signal, sample_rate=SAMPLE_RATE, title=None, x_label=None, y_label=None, mono=False):
+    def plot_magnitude_spectrum(cls, signal, sample_rate=SAMPLE_RATE, title=None, x_label=None, y_label=None, mono=False, save_dir=None, file_name="magnitude_spectrum.png"):
         # If mono, work with the single channel; if stereo, split the channels
         if mono:
             data_left = signal
@@ -69,4 +70,11 @@ class Plotter:
             plt.legend()
         
         plt.tight_layout()
-        plt.show()
+
+         # Save the plot to the specified directory
+        if save_dir:
+            os.makedirs(save_dir, exist_ok=True)  # Create the directory if it doesn't exist
+            save_path = os.path.join(save_dir, file_name)
+            plt.savefig(save_path)
+
+        #plt.show()
