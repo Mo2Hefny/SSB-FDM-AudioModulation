@@ -68,6 +68,9 @@ class Plotter:
             plt.xlabel(x_label)
             plt.ylabel(y_label)
             plt.legend()
+
+        # Adjust the x-axis range to zoom in on the higher frequencies (e.g., 0-50 kHz)
+        #plt.xlim(0, 60000)  # Adjust this range as needed to include carrier frequencies
         
         plt.tight_layout()
 
