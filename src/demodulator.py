@@ -55,7 +55,7 @@ if __name__ == "__main__":
             carrier = np.cos(2 * np.pi * carrier_frequencies[i] * t)
 
 
-            demodulated_signal = signal * carrier
+            demodulated_signal = AMPLIFING_FACTOR * signal * carrier
 
             demodulated_signal = Filterer.low_pass_filter(demodulated_signal, sample_rate, LIMIT_FREQUENCY, FilterType.LOW_PASS_BUTTERWORTH)
             # plot the magnitude spectrum of the filtered signal
