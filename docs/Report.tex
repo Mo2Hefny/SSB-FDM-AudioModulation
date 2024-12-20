@@ -83,7 +83,7 @@ This project explores the modulation of three speech signals using single sideba
 \section{Voice Signal Recording and Preprocessing}
 
 \subsection{Recording Voice Signals}
-The selected sampling frequency is \texttt{44100 Hz}. This choice adheres to the Nyquist theorem, which requires the sampling frequency to be at least twice the highest frequency present in the signal to avoid aliasing. Human speech generally ranges from 300 Hz to 3.4 kHz. By using a sampling frequency of 44.1 kHz, the signal is captured accurately, with no significant loss of high-frequency components.
+The chosen sampling frequency is \texttt{44100 Hz}. This complies with the Nyquist theorem, which states that the sampling frequency must be at least twice the highest frequency component in the signal to avoid aliasing. Human speech primarily occupies the frequency range of 300 Hz to 3.4 kHz. By selecting a sampling rate of 44.1 kHz, the signal is accurately captured with no significant loss of high-frequency details. Furthermore, this sampling frequency ensures sufficient bandwidth to prevent distortion and aliasing during the modulation process, particularly as the signal's frequency content is shifted to higher frequencies during single-sideband (SSB) modulation. This choice supports the accurate transmission and recovery of the signals in the Frequency Division Multiplexing (FDM) system.
 
 \subsection{Saving Recorded Signals}
 The signals were saved as \texttt{input1.wav}, \texttt{input2.wav}, and \texttt{input3.wav}. Below is the code used for recording:
@@ -298,7 +298,7 @@ The magnitude spectrum of the bandpass-filtered signals is shown below:
 After isolating the desired signal, it is multiplied with a cosine wave of the corresponding carrier frequency to demodulate it back to its baseband form. This operation effectively reverses the modulation process:
 \[ s_{demod}(t) = s_{BPF}(t) \cdot \cos(2\pi f_c t). \]
 
-To restore the signal's amplitude, we multiply it by a factor of 4, as both modulation and demodulation reduce the amplitude by half. \\
+To restore the signal's amplitude, we multiply it by a factor of 4, as both modulation and demodulation reduce the amplitude by half each. \\
 \\
 Below is the code used for demodulation:
 \begin{lstlisting}[language=Python, caption=Demodulation Code]
@@ -335,7 +335,7 @@ Summarize the outcomes of the project, key findings, and possible improvements f
 
 \newpage
 \section*{Appendix: Code}
-Below is the full MATLAB code used in the project:
+Below is the full Python code used in the project:
 % Add commmon_includes.py file
 \lstinputlisting[language=Python, caption=Common Includes]{../src/common_includes.py}
 % Add record_audio.py file
